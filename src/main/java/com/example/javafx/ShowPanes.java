@@ -7,10 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
@@ -66,6 +65,39 @@ public class ShowPanes extends Application{
         stage2.setTitle("ShowBorderPane");
         stage2.setScene(scene2);
         stage2.show();
+
+        Stage stage3= new Stage();
+        BorderPane bPane= new BorderPane();
+        bPane.setTop(getHBox());
+        bPane.setLeft(getVBox());
+
+        Scene scene4= new Scene(bPane);
+        stage3.setTitle("ShowHBox");
+        stage3.setScene(scene4);
+        stage3.show();
+    }
+
+    public HBox getHBox(){
+        HBox hBox= new HBox(15);
+        hBox.setPadding(new Insets(15,15,15,15));
+        hBox.setStyle("-fx-background-color: gold");
+        hBox.getChildren().add(new Button("Computer Science"));
+        hBox.getChildren().add(new Button("Chemistry"));
+        ImageView imageView= new ImageView(new Image("https://www.onlinestores.com/48-stars-american-flag.html"));
+        hBox.getChildren().add(imageView);
+        return hBox;
+    }
+
+    public VBox getVBox(){
+        VBox vBox= new VBox(15);
+        vBox.setPadding(new Insets(15,5,5,5));
+        vBox.getChildren().add(new Label("Courses: "));
+        Label[] courses= {new Label("CSCI 1301"),new Label("CSCI 1302"),new Label("CSCI 2410"),new Label("CSCI 3720")};
+        for (Label course: courses){
+            vBox.setMargin(course, new Insets(0,0,0,15));
+            vBox.getChildren().add(course);
+        }
+        return vBox;
     }
     public static void main(String[] args) {
         Application.launch(args);
